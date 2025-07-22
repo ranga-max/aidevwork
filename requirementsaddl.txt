@@ -1,0 +1,8 @@
+streamlit
+confluent-kafka
+fastavro
+requests
+httpx
+urllib3
+authlib
+
