@@ -1,0 +1,34 @@
+<configuration>
+   <property>
+    <name>hive.metastore.local</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://hms:9083</value>
+  </property>
+  <property>
+    <name>fs.s3a.access.key</name>
+    <value>someawss3accesskey</value>
+  </property>
+  <property>
+    <name>fs.s3a.secret.key</name>
+    <value>someawss3secretkey</value>
+  </property>
+  <property>
+    <name>fs.s3a.aws.credentials.provider</name>
+    <value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>
+  </property>
+  <property>
+    <name>fs.s3a.region</name>
+    <value>us-east-1</value>
+  </property>
+  <property>
+    <name>fs.s3a.impl</name>
+    <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+  </property>
+  <property>
+    <name>fs.s3a.path.style.access</name>
+    <value>true</value>
+  </property>
+</configuration>

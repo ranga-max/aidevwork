@@ -1,0 +1,103 @@
+FROM flink:1.18.1-scala_2.12-java11 AS builder
+SHELL ["/bin/bash", "-c"]
+
+# Install some useful tools
+RUN apt-get update && \
+    apt-get install -y neovim tree lnav unzip
+
+RUN mkdir -p /tmp/transfer
+RUN wget -P /tmp/transfer/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-connector-kafka/3.3.0-1.19/flink-connector-kafka-3.3.0-1.19.jar \
+    wget -P /tmp/transfer/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-avro-confluent-registry/1.19.1/flink-sql-avro-confluent-registry-1.19.1.jar; \
+    wget -P /tmp/transfer/ https://repo.maven.apache.org/maven2/org/apache/kafka/kafka-clients/3.2.3/kafka-clients-3.2.3.jar; \
+    wget -P /tmp/transfer/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-json/1.19.1/flink-json-1.19.1.jar; \
+    wget -P /tmp/transfer/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-csv/1.19.1/flink-csv-1.19.1.jar; \
+    wget -P /tmp/transfer/ https://github.com/knaufk/flink-faker/releases/download/v0.5.2/flink-faker-0.5.2.jar;
+
+
+WORKDIR /tmp/transfer
+
+#Parquet Connector
+RUN echo "-> Install Parquet Format" && \
+    mkdir -p ./formats && pushd  $_ && \
+    curl https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-parquet/1.19.1/flink-sql-parquet-1.19.1.jar -O  && \
+    popd
+
+#Iceberg Connector Jars
+#Iceberg clients ship with support for a number of different catalog implementations. 
+RUN echo "-> Install JARs: Dependencies for Iceberg" && \
+    mkdir -p ./iceberg  && \
+    curl -O --output-dir ./iceberg https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-flink-runtime-1.19/1.8.1/iceberg-flink-runtime-1.19-1.8.1.jar \
+    && curl -O --output-dir ./iceberg  https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-flink/1.8.1/iceberg-flink-1.8.1.jar
+
+#Hive Connector
+RUN mkdir -p ./hive && pushd  $_ && \
+    curl https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-hive-3.1.3_2.12/1.19.1/flink-sql-connector-hive-3.1.3_2.12-1.19.1.jar -O  && \
+    popd
+
+RUN wget https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-j-8.0.33.zip
+RUN unzip mysql-connector-j-8.0.33.zip
+RUN mv mysql-connector-j-8.0.33/mysql-connector-j-8.0.33.jar ./hive/
+RUN rm -rf mysql-connector-j-8.0.33.jar
+
+#Install Hadoop Dependencies the Hive code in Flink will use
+RUN echo "-> Install JARs: Hadoop" && \
+    mkdir -p ./hadoop && pushd $_ && \
+    curl https://repo1.maven.org/maven2/org/apache/commons/commons-configuration2/2.1.1/commons-configuration2-2.1.1.jar -O && \
+    curl https://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar -O && \
+    curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-auth/3.3.4/hadoop-auth-3.3.4.jar -O && \
+    curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/3.3.4/hadoop-common-3.3.4.jar -O && \
+    curl https://repo1.maven.org/maven2/org/apache/hadoop/thirdparty/hadoop-shaded-guava/1.1.1/hadoop-shaded-guava-1.1.1.jar -O && \
+    curl https://repo1.maven.org/maven2/org/codehaus/woodstox/stax2-api/4.2.1/stax2-api-4.2.1.jar -O && \
+    curl https://repo1.maven.org/maven2/com/fasterxml/woodstox/woodstox-core/5.3.0/woodstox-core-5.3.0.jar -O && \
+    curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-hdfs-client/3.3.4/hadoop-hdfs-client-3.3.4.jar -O && \
+    curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/3.3.4/hadoop-mapreduce-client-core-3.3.4.jar -O  && \
+    popd
+
+#Integration with AWS services includes s3a file system implementation aws sdk jars are used to support hadoop jars for AWS API calls
+RUN echo "-> Install JARs: AWS / Hadoop S3" && \
+    mkdir -p ./aws && \
+    curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar -o ./aws/hadoop-aws-3.3.4.jar && \
+    curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.648/aws-java-sdk-bundle-1.12.648.jar -o ./aws/aws-java-sdk-bundle-1.12.648.jar
+
+#FROM fedora:latest AS fedora-builder
+#RUN mkdir -p /tmp/rpms
+#WORKDIR /tmp/rpms
+#RUN dnf download --resolve dnf
+
+#FROM confluentinc/cp-flink:1.19.2-cp3 AS final
+FROM confluentinc/cp-flink-with-apt:1.19.1-cp1 AS final
+
+COPY --from=builder /tmp/transfer/* /opt/flink/lib/
+
+#RUN mkdir -p /tmp/rpms
+#COPY --from=fedora-builder /tmp/rpms/ /tmp/rpms
+#RUN rpm -Uvh /tmp/rpms/*.rpm
+
+WORKDIR /opt/flink
+
+RUN mkdir -p ./lib/iceberg && \
+    mkdir -p ./lib/formats && \
+    mkdir -p ./lib/hive && \
+    mkdir -p ./lib/hadoop && \
+    mkdir -p ./lib/aws && \
+    mkdir -p /tmp/parentjars
+    
+COPY ./hive-site-iceberg.xml ./conf/hive-site.xml
+COPY --from=builder /tmp/transfer/hive/* /opt/flink/lib/hive/
+COPY --from=builder /tmp/transfer/hadoop/* /opt/flink/lib/hadoop/
+COPY --from=builder /tmp/transfer/formats/* /opt/flink/lib/formats/
+COPY --from=builder /tmp/transfer/iceberg/* /opt/flink/lib/iceberg/
+COPY --from=builder /tmp/transfer/aws/* /opt/flink/lib/aws/
+COPY --from=builder /opt/flink/lib/* /tmp/parentjars/
+
+COPY --from=builder opt/flink/lib/flink-connector-files-1.18.1.jar /opt/flink/lib/
+
+#WORKDIR /opt/flink
+#Flink s3 fs jars provide an implemetation of HDFS for aws S3 allowing flink to interact with s3 with the same abstraction as HDFS
+RUN echo "Add Flink S3 Plugin" && \
+    mkdir ./plugins/s3-fs-hadoop && \  
+    cp ./opt/flink-s3-fs-hadoop-1.19.1-cp1.jar ./plugins/s3-fs-hadoop/
+
+CMD ./bin/start-cluster.sh && ./bin/sql-gateway.sh start -Dsql-gateway.endpoint.rest.address=localhost && sleep infinity
+
+#RUN rpm -ivh dnf-4.14.0-1.fc36.noarch.rpm

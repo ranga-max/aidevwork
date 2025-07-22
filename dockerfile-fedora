@@ -1,0 +1,4 @@
+FROM fedora:latest AS fedora-builder
+RUN mkdir -p /tmp/rpms
+WORKDIR /tmp/rpms
+RUN dnf download --resolve dnf
