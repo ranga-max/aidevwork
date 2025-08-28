@@ -159,28 +159,95 @@ services:
       PORT: 9021     
     networks:
        flinkiceberg:    
-  spark-iceberg:
-    image: tabulario/spark-iceberg
-    container_name: spark-iceberg
+  #spark-iceberg:
+  #  image: tabulario/spark-iceberg
+  #  container_name: spark-iceberg
+  #  build: spark/
+  #  command: [ "/bin/bash", "-c", "--",  "jupyter", "notebook", "--ip 0.0.0.0", "--no-browser", "--allow-root" ]  
+  #  depends_on:
+  #    - rest
+  #    - minio
+  #  volumes:
+  #    - ./warehouse:/home/iceberg/warehouse
+  #    - ./notebooks:/home/iceberg/notebooks/notebooks
+  #  environment:
+  #    - AWS_ACCESS_KEY_ID=admin
+  #    - AWS_SECRET_ACCESS_KEY=password
+  #    - AWS_REGION=us-east-1
+  #  ports:
+  #    - 8888:8888
+  #    - 8080:8080
+  #    - 10000:10000
+  #    - 10001:10001      
+  #  networks:
+  #    flinkiceberg:    
+  spark-iceberg-master:
+    #image: tabulario/spark-iceberg
+    image: rrchak/sparklocal
+    container_name: spark-iceberg-master
     build: spark/
-    command: [ "/bin/bash", "-c", "--",  "jupyter", "notebook", "--ip 0.0.0.0", "--no-browser", "--allow-root" ]  
+    #command: >
+    #  jupyter notebook --ip 0.0.0.0 --port 8443 --no-browser --allow-root 
+    #command: [ "/bin/sh", "-c", "--",  "jupyter", "notebook", "--ip 0.0.0.0", "--no-browser", "--allow-root" ]  
     depends_on:
       - rest
       - minio
     volumes:
+      - /home/ubuntu/cpflink/log4j.properties/log4j2.properties:/opt/spark/conf/log4j2.properties
       - ./warehouse:/home/iceberg/warehouse
       - ./notebooks:/home/iceberg/notebooks/notebooks
+      - ./spark-delta-defaults.conf:/opt/spark/conf/spark-defaults.conf
+      - ./jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
+      - ./ssl/server.crt:/root/.jupyter/server.crt
+      - ./ssl/server.key:/root/.jupyter/server.key
+      - ./logs:/opt/spark/logs/
     environment:
       - AWS_ACCESS_KEY_ID=admin
       - AWS_SECRET_ACCESS_KEY=password
       - AWS_REGION=us-east-1
+      - SPARK_MODE=master
+      - SPARK_LOCAL_IP=spark-master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - CC_ACCESS_KEY="xxx"
+      - CC_SECRET="yyy"
+      - SR_ACCESS_KEY="zzz"
+      - SR_SECRET="aaa"
+      - CC_URL="bbb"
+      - SR_URL="ccc"
     ports:
+      - 7077:7077
       - 8888:8888
+      - 8443:8443
       - 8080:8080
       - 10000:10000
-      - 10001:10001      
+      - 10001:10001
     networks:
-      flinkiceberg:    
+      flinkiceberg:
+        aliases:
+          - spark-master
+  spark-worker-1:
+    image: rrchak/sparklocal
+    container_name: "spark-iceberg-worker-1"
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-iceberg-master:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=1
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - CC_ACCESS_KEY="xxx"
+      - CC_SECRET="yyy"
+      - SR_ACCESS_KEY="zzz"
+      - SR_SECRET="aaa"
+      - CC_URL="bbb"
+      - SR_URL="ccc"
+    networks:
+       flinkiceberg:         
   mysql:
     build:
       context: .

@@ -1,0 +1,62 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# syntax=docker/dockerfile:1
+FROM tabulario/spark-iceberg
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      netcat-traditional \
+      iputils-ping && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip install  \
+    pyspark \
+    scikit-learn \
+    numpy \
+    scipy \
+    pandas \
+    matplotlib \
+    seaborn \
+    confluent-kafka \
+    delta-spark \
+    kafka-python \
+    pickle-mixin
+
+RUN curl -O https://repo1.maven.org/maven2/software/amazon/awssdk/s3/2.29.45/s3-2.29.45.jar \
+    && curl -O https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk/1.12.353/aws-java-sdk-1.12.353.jar \
+    && curl -O https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.648/aws-java-sdk-bundle-1.12.648.jar \
+    && curl -O https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar \
+    && curl -O https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar \
+    && curl -O https://repo1.maven.org/maven2/io/delta/delta-storage/2.4.0/delta-storage-2.4.0.jar \
+    && curl -O https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.2.0/delta-spark_2.12-3.2.0.jar \
+    && mv s3-2.29.45.jar /opt/spark/jars \
+    #&& mv aws-java-sdk-1.12.353.jar /opt/spark/jars \
+    && mv aws-java-sdk-bundle-1.12.648.jar /opt/spark/jars \
+    && mv hadoop-aws-3.3.4.jar /opt/spark/jars \
+    && mv delta-core_2.12-2.4.0.jar /opt/spark/jars \
+    && mv delta-storage-2.4.0.jar /opt/spark/jars \
+    && mv delta-spark_2.12-3.2.0.jar  /opt/spark/jars
+
+#COPY start-notebook.sh /usr/local/bin/start-notebook.sh
+#RUN chmod +x /usr/local/bin/start-notebook.sh
+#RUN mkdir -p /tmp/spark-events && chmod 777 /tmp/spark-events
+#CMD ["start-notebook.sh"]
+
+#CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8443", "--no-browser", "--allow-root", "--NotebookApp.keyfile=/root/.jupyter/server.key", "--NotebookApp.certfile=/root/.jupyter/server.crt", "--NotebookApp.token=''"]
+
+ 
+
