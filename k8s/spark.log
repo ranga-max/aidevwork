@@ -1,0 +1,538 @@
+++ id -u
++ myuid=0
+++ id -g
++ mygid=0
++ set +e
+++ getent passwd 0
++ uidentry=root:x:0:0:root:/root:/bin/bash
++ set -e
++ '[' -z root:x:0:0:root:/root:/bin/bash ']'
++ '[' -z '' ']'
+++ java -XshowSettings:properties -version
+++ grep java.home
+++ awk '{print $3}'
++ JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
++ SPARK_CLASSPATH=':/opt/spark/jars/*'
++ env
++ grep SPARK_JAVA_OPT_
++ sort -t_ -k4 -n
++ sed 's/[^=]*=\(.*\)/\1/g'
+++ command -v readarray
++ '[' readarray ']'
++ readarray -t SPARK_EXECUTOR_JAVA_OPTS
++ '[' -n '' ']'
++ '[' -z ']'
++ '[' -z ']'
++ '[' -n '' ']'
++ '[' -z ']'
++ '[' -z ']'
++ '[' -z x ']'
++ SPARK_CLASSPATH='/opt/spark/conf::/opt/spark/jars/*'
++ SPARK_CLASSPATH='/opt/spark/conf::/opt/spark/jars/*:/opt/spark'
++ case "$1" in
++ echo 'Non-spark-on-k8s command provided, proceeding in pass-through mode...'
++ CMD=("$@")
++ exec /usr/bin/tini -s -- notebook
+Non-spark-on-k8s command provided, proceeding in pass-through mode...
+[I 2025-09-26 01:06:54.294 ServerApp] jupysql_plugin | extension was successfully linked.
+[I 2025-09-26 01:06:54.294 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2025-09-26 01:06:54.298 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[W 2025-09-26 01:06:54.300 LabApp] 'token' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2025-09-26 01:06:54.300 LabApp] 'password' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2025-09-26 01:06:54.303 ServerApp] ServerApp.token config is deprecated in 2.0. Use IdentityProvider.token.
+[I 2025-09-26 01:06:54.303 ServerApp] jupyterlab | extension was successfully linked.
+[I 2025-09-26 01:06:54.307 ServerApp] notebook | extension was successfully linked.
+[I 2025-09-26 01:06:54.308 ServerApp] Writing Jupyter server cookie secret to /root/.local/share/jupyter/runtime/jupyter_cookie_secret
+[I 2025-09-26 01:06:54.702 ServerApp] notebook_shim | extension was successfully linked.
+[W 2025-09-26 01:06:54.730 ServerApp] WARNING: The Jupyter server is listening on all IP addresses and not using encryption. This is not recommended.
+[W 2025-09-26 01:06:54.730 ServerApp] WARNING: The Jupyter server is listening on all IP addresses and not using authentication. This is highly insecure and not recommended.
+[I 2025-09-26 01:06:54.730 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2025-09-26 01:06:54.730 ServerApp] Registered jupysql-plugin server extension
+[I 2025-09-26 01:06:54.731 ServerApp] jupysql_plugin | extension was successfully loaded.
+[I 2025-09-26 01:06:54.733 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2025-09-26 01:06:54.734 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2025-09-26 01:06:54.736 LabApp] JupyterLab extension loaded from /usr/local/lib/python3.10/site-packages/jupyterlab
+[I 2025-09-26 01:06:54.737 LabApp] JupyterLab application directory is /usr/local/share/jupyter/lab
+[I 2025-09-26 01:06:54.737 LabApp] Extension Manager is 'pypi'.
+[I 2025-09-26 01:06:54.785 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2025-09-26 01:06:54.788 ServerApp] notebook | extension was successfully loaded.
+[I 2025-09-26 01:06:54.790 ServerApp] Serving notebooks from local directory: /home/iceberg/notebooks
+[I 2025-09-26 01:06:54.790 ServerApp] Jupyter Server 2.17.0 is running at:
+[I 2025-09-26 01:06:54.790 ServerApp] http://localhost:8888/tree
+[I 2025-09-26 01:06:54.790 ServerApp]     http://127.0.0.1:8888/tree
+[I 2025-09-26 01:06:54.790 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 2025-09-26 01:06:54.811 ServerApp] Skipped non-installed server(s): basedpyright, bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyrefly, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[W 2025-09-26 01:09:19.202 ServerApp] Clearing invalid/expired login cookie username-54-144-218-71-8888
+[W 2025-09-26 01:09:19.223 ServerApp] 404 GET /static/notebook/main.407246dd27aed8010549.js?v=407246dd27aed8010549 (3463c94718074c3a808cfe31d2857e4d@127.0.0.1) 21.46ms referer=http://54.144.218.71:8888/notebooks/Untitled.ipynb
+[I 2025-09-26 01:09:26.126 ServerApp] 302 GET / (@127.0.0.1) 0.54ms
+[I 2025-09-26 01:09:39.925 ServerApp] Creating new notebook in 
+[I 2025-09-26 01:09:39.979 ServerApp] Writing notebook-signing key to /root/.local/share/jupyter/notebook_secret
+[I 2025-09-26 01:09:40.439 ServerApp] Saving file at /Untitled.ipynb
+[I 2025-09-26 01:09:40.506 ServerApp] Kernel started: c9ab9ae8-4795-40dc-97c4-9e2172d1d85a
+25/09/26 01:09:43 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/09/26 01:09:43 WARN DependencyUtils: Local jar /home/iceberg/notebooks/jars/delta-core_2.12-2.4.0.jar does not exist, skipping.
+25/09/26 01:09:43 WARN DependencyUtils: Local jar /home/iceberg/notebooks/jars/hadoop-aws-3.3.4.jar does not exist, skipping.
+25/09/26 01:09:43 WARN DependencyUtils: Local jar /home/iceberg/notebooks/jars/delta-storage-2.4.0.jar does not exist, skipping.
+25/09/26 01:09:43 WARN DependencyUtils: Local jar /home/iceberg/notebooks/jars/s3-2.29.45.jar does not exist, skipping.
+25/09/26 01:09:43 WARN DependencyUtils: Local jar /home/iceberg/notebooks/jars/aws-java-sdk-bundle-1.12.648.jar does not exist, skipping.
+25/09/26 01:09:43 INFO SparkContext: Running Spark version 3.5.6
+25/09/26 01:09:43 INFO SparkContext: OS info Linux, 5.19.0-1025-aws, amd64
+25/09/26 01:09:43 INFO SparkContext: Java version 17.0.16
+25/09/26 01:09:43 INFO ResourceUtils: ==============================================================
+25/09/26 01:09:43 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/09/26 01:09:43 INFO ResourceUtils: ==============================================================
+25/09/26 01:09:43 INFO SparkContext: Submitted application: PySparkShell
+25/09/26 01:09:43 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/09/26 01:09:43 INFO ResourceProfile: Limiting resource is cpu
+25/09/26 01:09:43 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/09/26 01:09:43 INFO SecurityManager: Changing view acls to: root
+25/09/26 01:09:43 INFO SecurityManager: Changing modify acls to: root
+25/09/26 01:09:43 INFO SecurityManager: Changing view acls groups to: 
+25/09/26 01:09:43 INFO SecurityManager: Changing modify acls groups to: 
+25/09/26 01:09:43 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+25/09/26 01:09:43 INFO Utils: Successfully started service 'sparkDriver' on port 46537.
+25/09/26 01:09:43 INFO SparkEnv: Registering MapOutputTracker
+25/09/26 01:09:43 INFO SparkEnv: Registering BlockManagerMaster
+25/09/26 01:09:43 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/09/26 01:09:43 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/09/26 01:09:43 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/09/26 01:09:43 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-1ddd2640-f514-464d-8d14-962ac9529011
+25/09/26 01:09:43 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+25/09/26 01:09:44 INFO SparkEnv: Registering OutputCommitCoordinator
+25/09/26 01:09:44 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/09/26 01:09:44 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/09/26 01:09:44 ERROR SparkContext: Failed to add file:/home/iceberg/notebooks/jars/delta-core_2.12-2.4.0.jar to Spark environment
+java.io.FileNotFoundException: Jar /home/iceberg/notebooks/jars/delta-core_2.12-2.4.0.jar not found
+	at org.apache.spark.SparkContext.addLocalJarFile$1(SparkContext.scala:2095)
+	at org.apache.spark.SparkContext.addJar(SparkContext.scala:2151)
+	at org.apache.spark.SparkContext.$anonfun$new$15(SparkContext.scala:521)
+	at org.apache.spark.SparkContext.$anonfun$new$15$adapted(SparkContext.scala:521)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:521)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:238)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+25/09/26 01:09:44 ERROR SparkContext: Failed to add file:/home/iceberg/notebooks/jars/hadoop-aws-3.3.4.jar to Spark environment
+java.io.FileNotFoundException: Jar /home/iceberg/notebooks/jars/hadoop-aws-3.3.4.jar not found
+	at org.apache.spark.SparkContext.addLocalJarFile$1(SparkContext.scala:2095)
+	at org.apache.spark.SparkContext.addJar(SparkContext.scala:2151)
+	at org.apache.spark.SparkContext.$anonfun$new$15(SparkContext.scala:521)
+	at org.apache.spark.SparkContext.$anonfun$new$15$adapted(SparkContext.scala:521)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:521)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:238)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+25/09/26 01:09:44 ERROR SparkContext: Failed to add file:/home/iceberg/notebooks/jars/delta-storage-2.4.0.jar to Spark environment
+java.io.FileNotFoundException: Jar /home/iceberg/notebooks/jars/delta-storage-2.4.0.jar not found
+	at org.apache.spark.SparkContext.addLocalJarFile$1(SparkContext.scala:2095)
+	at org.apache.spark.SparkContext.addJar(SparkContext.scala:2151)
+	at org.apache.spark.SparkContext.$anonfun$new$15(SparkContext.scala:521)
+	at org.apache.spark.SparkContext.$anonfun$new$15$adapted(SparkContext.scala:521)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:521)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:238)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+25/09/26 01:09:44 ERROR SparkContext: Failed to add file:/home/iceberg/notebooks/jars/s3-2.29.45.jar to Spark environment
+java.io.FileNotFoundException: Jar /home/iceberg/notebooks/jars/s3-2.29.45.jar not found
+	at org.apache.spark.SparkContext.addLocalJarFile$1(SparkContext.scala:2095)
+	at org.apache.spark.SparkContext.addJar(SparkContext.scala:2151)
+	at org.apache.spark.SparkContext.$anonfun$new$15(SparkContext.scala:521)
+	at org.apache.spark.SparkContext.$anonfun$new$15$adapted(SparkContext.scala:521)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:521)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:238)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+25/09/26 01:09:44 ERROR SparkContext: Failed to add file:/home/iceberg/notebooks/jars/aws-java-sdk-bundle-1.12.648.jar to Spark environment
+java.io.FileNotFoundException: Jar /home/iceberg/notebooks/jars/aws-java-sdk-bundle-1.12.648.jar not found
+	at org.apache.spark.SparkContext.addLocalJarFile$1(SparkContext.scala:2095)
+	at org.apache.spark.SparkContext.addJar(SparkContext.scala:2151)
+	at org.apache.spark.SparkContext.$anonfun$new$15(SparkContext.scala:521)
+	at org.apache.spark.SparkContext.$anonfun$new$15$adapted(SparkContext.scala:521)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.SparkContext.<init>(SparkContext.scala:521)
+	at org.apache.spark.api.java.JavaSparkContext.<init>(JavaSparkContext.scala:58)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:238)
+	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+25/09/26 01:09:44 INFO Executor: Starting executor ID driver on host jupyter-0.jupyter-headless.spark.svc.cluster.local
+25/09/26 01:09:44 INFO Executor: OS info Linux, 5.19.0-1025-aws, amd64
+25/09/26 01:09:44 INFO Executor: Java version 17.0.16
+25/09/26 01:09:44 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/09/26 01:09:44 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@111f3cc5 for default.
+25/09/26 01:09:44 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34103.
+25/09/26 01:09:44 INFO NettyBlockTransferService: Server created on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103
+25/09/26 01:09:44 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/09/26 01:09:44 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, jupyter-0.jupyter-headless.spark.svc.cluster.local, 34103, None)
+25/09/26 01:09:44 INFO BlockManagerMasterEndpoint: Registering block manager jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 with 434.4 MiB RAM, BlockManagerId(driver, jupyter-0.jupyter-headless.spark.svc.cluster.local, 34103, None)
+25/09/26 01:09:44 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, jupyter-0.jupyter-headless.spark.svc.cluster.local, 34103, None)
+25/09/26 01:09:44 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, jupyter-0.jupyter-headless.spark.svc.cluster.local, 34103, None)
+25/09/26 01:09:44 INFO SingleEventLogFileWriter: Logging events to file:/home/iceberg/spark-events/local-1758848984240.inprogress
+[I 2025-09-26 01:09:44.854 ServerApp] Connecting to kernel c9ab9ae8-4795-40dc-97c4-9e2172d1d85a.
+[W 2025-09-26 01:09:44.856 ServerApp] The websocket_ping_timeout (90000) cannot be longer than the websocket_ping_interval (30000).
+    Setting websocket_ping_timeout=30000
+[I 2025-09-26 01:09:45.010 ServerApp] Starting buffering for c9ab9ae8-4795-40dc-97c4-9e2172d1d85a:877415fb-d257-4c11-aaa3-f54533ad2656
+[I 2025-09-26 01:09:45.018 ServerApp] Connecting to kernel c9ab9ae8-4795-40dc-97c4-9e2172d1d85a.
+[I 2025-09-26 01:09:45.146 ServerApp] Connecting to kernel c9ab9ae8-4795-40dc-97c4-9e2172d1d85a.
+[I 2025-09-26 01:09:45.227 ServerApp] Connecting to kernel c9ab9ae8-4795-40dc-97c4-9e2172d1d85a.
+[I 2025-09-26 01:11:41.399 ServerApp] Saving file at /Untitled.ipynb
+[I 2025-09-26 01:13:41.496 ServerApp] Saving file at /Untitled.ipynb
+25/09/26 01:14:00 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+25/09/26 01:14:00 INFO SharedState: Warehouse path is 'file:/home/iceberg/notebooks/spark-warehouse'.
+25/09/26 01:14:00 WARN SparkSession: Using an existing Spark session; only runtime SQL configurations will take effect.
+[I 2025-09-26 01:15:42.382 ServerApp] Saving file at /Untitled.ipynb
+25/09/26 01:18:02 INFO CodeGenerator: Code generated in 171.142676 ms
+25/09/26 01:18:02 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:18:02 INFO DAGScheduler: Got job 0 (showString at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/09/26 01:18:02 INFO DAGScheduler: Final stage: ResultStage 0 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:18:02 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:18:02 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:18:02 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[6] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:18:02 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:18:02 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:18:02 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:18:02 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:18:02 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[6] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/09/26 01:18:02 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/09/26 01:18:02 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 0, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:18:02 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+[Stage 0:>                                                          (0 + 1) / 1]25/09/26 01:18:03 INFO CodeGenerator: Code generated in 11.614644 ms
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 768, boot = 638, init = 130, finish = 0
+25/09/26 01:18:03 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1886 bytes result sent to driver
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 886 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/1)
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+25/09/26 01:18:03 INFO PythonAccumulatorV2: Connected to AccumulatorServer at host: 127.0.0.1 port: 60551
+25/09/26 01:18:03 INFO DAGScheduler: ResultStage 0 (showString at NativeMethodAccessorImpl.java:0) finished in 1.027 s
+25/09/26 01:18:03 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+25/09/26 01:18:03 INFO DAGScheduler: Job 0 finished: showString at NativeMethodAccessorImpl.java:0, took 1.057354 s
+                                                                                25/09/26 01:18:03 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:18:03 INFO DAGScheduler: Got job 1 (showString at NativeMethodAccessorImpl.java:0) with 4 output partitions
+25/09/26 01:18:03 INFO DAGScheduler: Final stage: ResultStage 1 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:18:03 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:18:03 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:18:03 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[6] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:18:03 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:18:03 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:18:03 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:18:03 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:18:03 INFO DAGScheduler: Submitting 4 missing tasks from ResultStage 1 (MapPartitionsRDD[6] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(1, 2, 3, 4))
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Adding task set 1.0 with 4 tasks resource profile 0
+25/09/26 01:18:03 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 1, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:18:03 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 2) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 2, PROCESS_LOCAL, 9016 bytes) 
+25/09/26 01:18:03 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 3) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 3, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:18:03 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 4) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 4, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:18:03 INFO Executor: Running task 0.0 in stage 1.0 (TID 1)
+25/09/26 01:18:03 INFO Executor: Running task 1.0 in stage 1.0 (TID 2)
+25/09/26 01:18:03 INFO Executor: Running task 2.0 in stage 1.0 (TID 3)
+25/09/26 01:18:03 INFO Executor: Running task 3.0 in stage 1.0 (TID 4)
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 148, boot = 13, init = 135, finish = 0
+25/09/26 01:18:03 INFO Executor: Finished task 2.0 in stage 1.0 (TID 3). 1886 bytes result sent to driver
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 3) in 167 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/4)
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 157, boot = 5, init = 152, finish = 0
+25/09/26 01:18:03 INFO Executor: Finished task 1.0 in stage 1.0 (TID 2). 1928 bytes result sent to driver
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 179 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (2/4)
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 182, boot = -70, init = 252, finish = 0
+25/09/26 01:18:03 INFO Executor: Finished task 3.0 in stage 1.0 (TID 4). 1843 bytes result sent to driver
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 4) in 200 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (3/4)
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 214, boot = 10, init = 204, finish = 0
+25/09/26 01:18:03 INFO Executor: Finished task 0.0 in stage 1.0 (TID 1). 1843 bytes result sent to driver
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 234 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (4/4)
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+25/09/26 01:18:03 INFO DAGScheduler: ResultStage 1 (showString at NativeMethodAccessorImpl.java:0) finished in 0.245 s
+25/09/26 01:18:03 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+25/09/26 01:18:03 INFO DAGScheduler: Job 1 finished: showString at NativeMethodAccessorImpl.java:0, took 0.250255 s
+25/09/26 01:18:03 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:18:03 INFO DAGScheduler: Got job 2 (showString at NativeMethodAccessorImpl.java:0) with 3 output partitions
+25/09/26 01:18:03 INFO DAGScheduler: Final stage: ResultStage 2 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:18:03 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:18:03 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:18:03 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[6] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:18:03 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:18:03 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.3 MiB)
+25/09/26 01:18:03 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:18:03 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:18:03 INFO DAGScheduler: Submitting 3 missing tasks from ResultStage 2 (MapPartitionsRDD[6] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(5, 6, 7))
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Adding task set 2.0 with 3 tasks resource profile 0
+25/09/26 01:18:03 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 5) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 5, PROCESS_LOCAL, 9014 bytes) 
+25/09/26 01:18:03 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 6) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 6, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:18:03 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 7) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 7, PROCESS_LOCAL, 9018 bytes) 
+25/09/26 01:18:03 INFO Executor: Running task 0.0 in stage 2.0 (TID 5)
+25/09/26 01:18:03 INFO Executor: Running task 2.0 in stage 2.0 (TID 7)
+25/09/26 01:18:03 INFO Executor: Running task 1.0 in stage 2.0 (TID 6)
+25/09/26 01:18:03 INFO BlockManagerInfo: Removed broadcast_1_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:18:03 INFO BlockManagerInfo: Removed broadcast_0_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 106, boot = -64, init = 170, finish = 0
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 108, boot = -101, init = 209, finish = 0
+25/09/26 01:18:03 INFO PythonRunner: Times: total = 109, boot = -92, init = 201, finish = 0
+25/09/26 01:18:03 INFO Executor: Finished task 2.0 in stage 2.0 (TID 7). 1885 bytes result sent to driver
+25/09/26 01:18:03 INFO Executor: Finished task 1.0 in stage 2.0 (TID 6). 1843 bytes result sent to driver
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 6) in 121 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/3)
+25/09/26 01:18:03 INFO Executor: Finished task 0.0 in stage 2.0 (TID 5). 1883 bytes result sent to driver
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 2.0 in stage 2.0 (TID 7) in 121 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (2/3)
+25/09/26 01:18:03 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 5) in 125 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (3/3)
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+25/09/26 01:18:03 INFO DAGScheduler: ResultStage 2 (showString at NativeMethodAccessorImpl.java:0) finished in 0.142 s
+25/09/26 01:18:03 INFO DAGScheduler: Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:18:03 INFO TaskSchedulerImpl: Killing all running tasks in stage 2: Stage finished
+25/09/26 01:18:03 INFO DAGScheduler: Job 2 finished: showString at NativeMethodAccessorImpl.java:0, took 0.147240 s
+25/09/26 01:18:03 INFO BlockManagerInfo: Removed broadcast_2_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:18:04 INFO CodeGenerator: Code generated in 13.774061 ms
+[I 2025-09-26 01:19:44.378 ServerApp] Saving file at /Untitled.ipynb
+25/09/26 01:21:44 WARN SparkSession: Using an existing Spark session; only runtime SQL configurations will take effect.
+[I 2025-09-26 01:21:44.486 ServerApp] Saving file at /Untitled.ipynb
+25/09/26 01:21:51 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:21:51 INFO DAGScheduler: Got job 3 (showString at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/09/26 01:21:51 INFO DAGScheduler: Final stage: ResultStage 3 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:21:51 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:21:51 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:21:51 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:21:51 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:21:51 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:21:51 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:21:51 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:21:51 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 3 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/09/26 01:21:51 INFO TaskSchedulerImpl: Adding task set 3.0 with 1 tasks resource profile 0
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 8) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 0, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:21:51 INFO Executor: Running task 0.0 in stage 3.0 (TID 8)
+25/09/26 01:21:51 INFO PythonRunner: Times: total = 137, boot = 4, init = 133, finish = 0
+25/09/26 01:21:51 INFO Executor: Finished task 0.0 in stage 3.0 (TID 8). 1843 bytes result sent to driver
+25/09/26 01:21:51 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 8) in 147 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/1)
+25/09/26 01:21:51 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+25/09/26 01:21:51 INFO DAGScheduler: ResultStage 3 (showString at NativeMethodAccessorImpl.java:0) finished in 0.154 s
+25/09/26 01:21:51 INFO DAGScheduler: Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:21:51 INFO TaskSchedulerImpl: Killing all running tasks in stage 3: Stage finished
+25/09/26 01:21:51 INFO DAGScheduler: Job 3 finished: showString at NativeMethodAccessorImpl.java:0, took 0.157517 s
+25/09/26 01:21:51 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:21:51 INFO DAGScheduler: Got job 4 (showString at NativeMethodAccessorImpl.java:0) with 4 output partitions
+25/09/26 01:21:51 INFO DAGScheduler: Final stage: ResultStage 4 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:21:51 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:21:51 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:21:51 INFO DAGScheduler: Submitting ResultStage 4 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:21:51 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:21:51 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:21:51 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:21:51 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:21:51 INFO DAGScheduler: Submitting 4 missing tasks from ResultStage 4 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(1, 2, 3, 4))
+25/09/26 01:21:51 INFO TaskSchedulerImpl: Adding task set 4.0 with 4 tasks resource profile 0
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 9) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 1, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 1.0 in stage 4.0 (TID 10) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 2, PROCESS_LOCAL, 9016 bytes) 
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 2.0 in stage 4.0 (TID 11) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 3, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 3.0 in stage 4.0 (TID 12) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 4, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:21:51 INFO Executor: Running task 0.0 in stage 4.0 (TID 9)
+25/09/26 01:21:51 INFO Executor: Running task 1.0 in stage 4.0 (TID 10)
+25/09/26 01:21:51 INFO Executor: Running task 2.0 in stage 4.0 (TID 11)
+25/09/26 01:21:51 INFO Executor: Running task 3.0 in stage 4.0 (TID 12)
+25/09/26 01:21:51 INFO PythonRunner: Times: total = 107, boot = -21, init = 128, finish = 0
+25/09/26 01:21:51 INFO Executor: Finished task 0.0 in stage 4.0 (TID 9). 1886 bytes result sent to driver
+25/09/26 01:21:51 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 9) in 118 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/4)
+25/09/26 01:21:51 INFO PythonRunner: Times: total = 137, boot = 4, init = 133, finish = 0
+25/09/26 01:21:51 INFO Executor: Finished task 1.0 in stage 4.0 (TID 10). 1971 bytes result sent to driver
+25/09/26 01:21:51 INFO BlockManagerInfo: Removed broadcast_3_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:21:51 INFO PythonRunner: Times: total = 154, boot = 9, init = 145, finish = 0
+25/09/26 01:21:51 INFO PythonRunner: Times: total = 154, boot = 13, init = 141, finish = 0
+25/09/26 01:21:51 INFO TaskSetManager: Finished task 1.0 in stage 4.0 (TID 10) in 163 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (2/4)
+25/09/26 01:21:51 INFO Executor: Finished task 3.0 in stage 4.0 (TID 12). 1929 bytes result sent to driver
+25/09/26 01:21:51 INFO Executor: Finished task 2.0 in stage 4.0 (TID 11). 1929 bytes result sent to driver
+25/09/26 01:21:51 INFO TaskSetManager: Finished task 3.0 in stage 4.0 (TID 12) in 164 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (3/4)
+25/09/26 01:21:51 INFO TaskSetManager: Finished task 2.0 in stage 4.0 (TID 11) in 166 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (4/4)
+25/09/26 01:21:51 INFO TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool 
+25/09/26 01:21:51 INFO DAGScheduler: ResultStage 4 (showString at NativeMethodAccessorImpl.java:0) finished in 0.174 s
+25/09/26 01:21:51 INFO DAGScheduler: Job 4 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:21:51 INFO TaskSchedulerImpl: Killing all running tasks in stage 4: Stage finished
+25/09/26 01:21:51 INFO DAGScheduler: Job 4 finished: showString at NativeMethodAccessorImpl.java:0, took 0.178221 s
+25/09/26 01:21:51 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:21:51 INFO DAGScheduler: Got job 5 (showString at NativeMethodAccessorImpl.java:0) with 3 output partitions
+25/09/26 01:21:51 INFO DAGScheduler: Final stage: ResultStage 5 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:21:51 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:21:51 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:21:51 INFO DAGScheduler: Submitting ResultStage 5 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:21:51 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:21:51 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:21:51 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:21:51 INFO SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:21:51 INFO DAGScheduler: Submitting 3 missing tasks from ResultStage 5 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(5, 6, 7))
+25/09/26 01:21:51 INFO TaskSchedulerImpl: Adding task set 5.0 with 3 tasks resource profile 0
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 13) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 5, PROCESS_LOCAL, 9014 bytes) 
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 1.0 in stage 5.0 (TID 14) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 6, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:21:51 INFO TaskSetManager: Starting task 2.0 in stage 5.0 (TID 15) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 7, PROCESS_LOCAL, 9018 bytes) 
+25/09/26 01:21:51 INFO Executor: Running task 1.0 in stage 5.0 (TID 14)
+25/09/26 01:21:51 INFO Executor: Running task 0.0 in stage 5.0 (TID 13)
+25/09/26 01:21:51 INFO Executor: Running task 2.0 in stage 5.0 (TID 15)
+25/09/26 01:21:52 INFO PythonRunner: Times: total = 100, boot = -37, init = 137, finish = 0
+25/09/26 01:21:52 INFO PythonRunner: Times: total = 100, boot = -60, init = 160, finish = 0
+25/09/26 01:21:52 INFO PythonRunner: Times: total = 101, boot = -16, init = 117, finish = 0
+25/09/26 01:21:52 INFO Executor: Finished task 2.0 in stage 5.0 (TID 15). 1971 bytes result sent to driver
+25/09/26 01:21:52 INFO BlockManagerInfo: Removed broadcast_4_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:21:52 INFO Executor: Finished task 0.0 in stage 5.0 (TID 13). 1969 bytes result sent to driver
+25/09/26 01:21:52 INFO Executor: Finished task 1.0 in stage 5.0 (TID 14). 1886 bytes result sent to driver
+25/09/26 01:21:52 INFO TaskSetManager: Finished task 2.0 in stage 5.0 (TID 15) in 118 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/3)
+25/09/26 01:21:52 INFO TaskSetManager: Finished task 1.0 in stage 5.0 (TID 14) in 120 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (2/3)
+25/09/26 01:21:52 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 13) in 121 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (3/3)
+25/09/26 01:21:52 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool 
+25/09/26 01:21:52 INFO DAGScheduler: ResultStage 5 (showString at NativeMethodAccessorImpl.java:0) finished in 0.128 s
+25/09/26 01:21:52 INFO DAGScheduler: Job 5 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:21:52 INFO TaskSchedulerImpl: Killing all running tasks in stage 5: Stage finished
+25/09/26 01:21:52 INFO DAGScheduler: Job 5 finished: showString at NativeMethodAccessorImpl.java:0, took 0.131970 s
+25/09/26 01:22:21 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:22:21 INFO DAGScheduler: Got job 6 (showString at NativeMethodAccessorImpl.java:0) with 1 output partitions
+25/09/26 01:22:21 INFO DAGScheduler: Final stage: ResultStage 6 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:22:21 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:22:21 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:22:21 INFO DAGScheduler: Submitting ResultStage 6 (MapPartitionsRDD[20] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:22:21 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:22:21 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:22:21 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:22:21 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:22:21 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 6 (MapPartitionsRDD[20] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Adding task set 6.0 with 1 tasks resource profile 0
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 0.0 in stage 6.0 (TID 16) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 0, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:22:21 INFO Executor: Running task 0.0 in stage 6.0 (TID 16)
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 99, boot = -29099, init = 29198, finish = 0
+25/09/26 01:22:21 INFO Executor: Finished task 0.0 in stage 6.0 (TID 16). 1843 bytes result sent to driver
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 0.0 in stage 6.0 (TID 16) in 108 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/1)
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Removed TaskSet 6.0, whose tasks have all completed, from pool 
+25/09/26 01:22:21 INFO DAGScheduler: ResultStage 6 (showString at NativeMethodAccessorImpl.java:0) finished in 0.114 s
+25/09/26 01:22:21 INFO DAGScheduler: Job 6 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Killing all running tasks in stage 6: Stage finished
+25/09/26 01:22:21 INFO DAGScheduler: Job 6 finished: showString at NativeMethodAccessorImpl.java:0, took 0.117812 s
+25/09/26 01:22:21 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:22:21 INFO DAGScheduler: Got job 7 (showString at NativeMethodAccessorImpl.java:0) with 4 output partitions
+25/09/26 01:22:21 INFO DAGScheduler: Final stage: ResultStage 7 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:22:21 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:22:21 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:22:21 INFO DAGScheduler: Submitting ResultStage 7 (MapPartitionsRDD[20] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:22:21 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:22:21 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:22:21 INFO BlockManagerInfo: Removed broadcast_5_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:22:21 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:22:21 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:22:21 INFO DAGScheduler: Submitting 4 missing tasks from ResultStage 7 (MapPartitionsRDD[20] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(1, 2, 3, 4))
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Adding task set 7.0 with 4 tasks resource profile 0
+25/09/26 01:22:21 INFO BlockManagerInfo: Removed broadcast_6_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 0.0 in stage 7.0 (TID 17) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 1, PROCESS_LOCAL, 9016 bytes) 
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 1.0 in stage 7.0 (TID 18) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 2, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 2.0 in stage 7.0 (TID 19) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 3, PROCESS_LOCAL, 9014 bytes) 
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 3.0 in stage 7.0 (TID 20) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 4, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:22:21 INFO Executor: Running task 0.0 in stage 7.0 (TID 17)
+25/09/26 01:22:21 INFO Executor: Running task 2.0 in stage 7.0 (TID 19)
+25/09/26 01:22:21 INFO Executor: Running task 1.0 in stage 7.0 (TID 18)
+25/09/26 01:22:21 INFO Executor: Running task 3.0 in stage 7.0 (TID 20)
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 101, boot = -29093, init = 29194, finish = 0
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 100, boot = -29096, init = 29196, finish = 0
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 102, boot = -16, init = 118, finish = 0
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 102, boot = -29096, init = 29198, finish = 0
+25/09/26 01:22:21 INFO Executor: Finished task 3.0 in stage 7.0 (TID 20). 1843 bytes result sent to driver
+25/09/26 01:22:21 INFO Executor: Finished task 2.0 in stage 7.0 (TID 19). 1969 bytes result sent to driver
+25/09/26 01:22:21 INFO Executor: Finished task 0.0 in stage 7.0 (TID 17). 1928 bytes result sent to driver
+25/09/26 01:22:21 INFO Executor: Finished task 1.0 in stage 7.0 (TID 18). 1843 bytes result sent to driver
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 3.0 in stage 7.0 (TID 20) in 116 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/4)
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 0.0 in stage 7.0 (TID 17) in 119 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (2/4)
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 1.0 in stage 7.0 (TID 18) in 119 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (3/4)
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 2.0 in stage 7.0 (TID 19) in 121 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (4/4)
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Removed TaskSet 7.0, whose tasks have all completed, from pool 
+25/09/26 01:22:21 INFO DAGScheduler: ResultStage 7 (showString at NativeMethodAccessorImpl.java:0) finished in 0.131 s
+25/09/26 01:22:21 INFO DAGScheduler: Job 7 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Killing all running tasks in stage 7: Stage finished
+25/09/26 01:22:21 INFO DAGScheduler: Job 7 finished: showString at NativeMethodAccessorImpl.java:0, took 0.134407 s
+25/09/26 01:22:21 INFO SparkContext: Starting job: showString at NativeMethodAccessorImpl.java:0
+25/09/26 01:22:21 INFO DAGScheduler: Got job 8 (showString at NativeMethodAccessorImpl.java:0) with 3 output partitions
+25/09/26 01:22:21 INFO DAGScheduler: Final stage: ResultStage 8 (showString at NativeMethodAccessorImpl.java:0)
+25/09/26 01:22:21 INFO DAGScheduler: Parents of final stage: List()
+25/09/26 01:22:21 INFO DAGScheduler: Missing parents: List()
+25/09/26 01:22:21 INFO DAGScheduler: Submitting ResultStage 8 (MapPartitionsRDD[20] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+25/09/26 01:22:21 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 12.6 KiB, free 434.4 MiB)
+25/09/26 01:22:21 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 6.6 KiB, free 434.4 MiB)
+25/09/26 01:22:21 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:22:21 INFO SparkContext: Created broadcast 8 from broadcast at DAGScheduler.scala:1611
+25/09/26 01:22:21 INFO DAGScheduler: Submitting 3 missing tasks from ResultStage 8 (MapPartitionsRDD[20] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(5, 6, 7))
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Adding task set 8.0 with 3 tasks resource profile 0
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 0.0 in stage 8.0 (TID 21) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 5, PROCESS_LOCAL, 9018 bytes) 
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 1.0 in stage 8.0 (TID 22) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 6, PROCESS_LOCAL, 8979 bytes) 
+25/09/26 01:22:21 INFO TaskSetManager: Starting task 2.0 in stage 8.0 (TID 23) (jupyter-0.jupyter-headless.spark.svc.cluster.local, executor driver, partition 7, PROCESS_LOCAL, 9015 bytes) 
+25/09/26 01:22:21 INFO Executor: Running task 1.0 in stage 8.0 (TID 22)
+25/09/26 01:22:21 INFO Executor: Running task 2.0 in stage 8.0 (TID 23)
+25/09/26 01:22:21 INFO Executor: Running task 0.0 in stage 8.0 (TID 21)
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 99, boot = -15, init = 114, finish = 0
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 99, boot = -21, init = 120, finish = 0
+25/09/26 01:22:21 INFO PythonRunner: Times: total = 99, boot = -21, init = 120, finish = 0
+25/09/26 01:22:21 INFO Executor: Finished task 0.0 in stage 8.0 (TID 21). 1971 bytes result sent to driver
+25/09/26 01:22:21 INFO Executor: Finished task 1.0 in stage 8.0 (TID 22). 1886 bytes result sent to driver
+25/09/26 01:22:21 INFO Executor: Finished task 2.0 in stage 8.0 (TID 23). 1927 bytes result sent to driver
+25/09/26 01:22:21 INFO BlockManagerInfo: Removed broadcast_7_piece0 on jupyter-0.jupyter-headless.spark.svc.cluster.local:34103 in memory (size: 6.6 KiB, free: 434.4 MiB)
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 0.0 in stage 8.0 (TID 21) in 114 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (1/3)
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 2.0 in stage 8.0 (TID 23) in 115 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (2/3)
+25/09/26 01:22:21 INFO TaskSetManager: Finished task 1.0 in stage 8.0 (TID 22) in 115 ms on jupyter-0.jupyter-headless.spark.svc.cluster.local (executor driver) (3/3)
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Removed TaskSet 8.0, whose tasks have all completed, from pool 
+25/09/26 01:22:21 INFO DAGScheduler: ResultStage 8 (showString at NativeMethodAccessorImpl.java:0) finished in 0.122 s
+25/09/26 01:22:21 INFO DAGScheduler: Job 8 is finished. Cancelling potential speculative or zombie tasks for this job
+25/09/26 01:22:21 INFO TaskSchedulerImpl: Killing all running tasks in stage 8: Stage finished
+25/09/26 01:22:21 INFO DAGScheduler: Job 8 finished: showString at NativeMethodAccessorImpl.java:0, took 0.125450 s
+[I 2025-09-26 01:23:45.390 ServerApp] Saving file at /Untitled.ipynb

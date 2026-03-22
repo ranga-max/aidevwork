@@ -1,0 +1,360 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    min.io/revision: "0"
+  creationTimestamp: "2025-09-18T13:54:07Z"
+  generateName: myminio-pool-0-
+  generation: 1
+  labels:
+    apps.kubernetes.io/pod-index: "0"
+    controller-revision-hash: myminio-pool-0-5475c5d598
+    statefulset.kubernetes.io/pod-name: myminio-pool-0-0
+    v1.min.io/console: myminio-console
+    v1.min.io/pool: pool-0
+    v1.min.io/tenant: myminio
+  name: myminio-pool-0-0
+  namespace: minio-tenant
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: StatefulSet
+    name: myminio-pool-0
+    uid: 03c3e256-380e-47aa-9943-47f6083683f5
+  resourceVersion: "2480376"
+  uid: c069eaac-719d-4e44-a66b-559cf3474cc8
+spec:
+  affinity:
+    nodeAffinity: {}
+    podAffinity: {}
+    podAntiAffinity: {}
+  containers:
+  - args:
+    - server
+    - --certs-dir
+    - /tmp/certs
+    - --console-address
+    - :9443
+    env:
+    - name: MINIO_CONFIG_ENV_FILE
+      value: /tmp/minio/config.env
+    image: quay.io/minio/minio:RELEASE.2025-04-08T15-41-24Z
+    imagePullPolicy: IfNotPresent
+    name: minio
+    ports:
+    - containerPort: 9000
+      name: minio-port
+      protocol: TCP
+    - containerPort: 9443
+      name: console-port
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsGroup: 1000
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /tmp/minio/
+      name: cfg-vol
+    - mountPath: /export0
+      name: "0"
+    - mountPath: /export1
+      name: "1"
+    - mountPath: /export2
+      name: "2"
+    - mountPath: /export3
+      name: "3"
+    - mountPath: /tmp/certs
+      name: myminio-tls
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lh48s
+      readOnly: true
+  - args:
+    - sidecar
+    - --tenant
+    - myminio
+    - --config-name
+    - storage-configuration
+    env:
+    - name: CLUSTER_DOMAIN
+      value: cluster.local
+    image: quay.io/minio/operator-sidecar:v7.0.1
+    imagePullPolicy: IfNotPresent
+    name: sidecar
+    readinessProbe:
+      failureThreshold: 1
+      httpGet:
+        path: /ready
+        port: 4444
+        scheme: HTTP
+      initialDelaySeconds: 5
+      periodSeconds: 1
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsGroup: 1000
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /tmp/minio/
+      name: cfg-vol
+    - mountPath: /tmp/minio-config
+      name: configuration
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lh48s
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostname: myminio-pool-0-0
+  initContainers:
+  - args:
+    - validate
+    - --tenant
+    - myminio
+    env:
+    - name: CLUSTER_DOMAIN
+      value: cluster.local
+    image: quay.io/minio/operator-sidecar:v7.0.1
+    imagePullPolicy: IfNotPresent
+    name: validate-arguments
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      runAsGroup: 1000
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /tmp/minio/
+      name: cfg-vol
+    - mountPath: /tmp/minio-config
+      name: configuration
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lh48s
+      readOnly: true
+  nodeName: my-kind-cluster-east-worker2
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    fsGroup: 1000
+    fsGroupChangePolicy: OnRootMismatch
+    runAsGroup: 1000
+    runAsNonRoot: true
+    runAsUser: 1000
+  serviceAccount: myminio-sa
+  serviceAccountName: myminio-sa
+  subdomain: myminio-hl
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: "0"
+    persistentVolumeClaim:
+      claimName: 0-myminio-pool-0-0
+  - name: "1"
+    persistentVolumeClaim:
+      claimName: 1-myminio-pool-0-0
+  - name: "2"
+    persistentVolumeClaim:
+      claimName: 2-myminio-pool-0-0
+  - name: "3"
+    persistentVolumeClaim:
+      claimName: 3-myminio-pool-0-0
+  - emptyDir: {}
+    name: cfg-vol
+  - name: myminio-tls
+    projected:
+      defaultMode: 420
+      sources:
+      - secret:
+          items:
+          - key: public.crt
+            path: public.crt
+          - key: private.key
+            path: private.key
+          - key: public.crt
+            path: CAs/public.crt
+          name: myminio-tls
+  - name: configuration
+    projected:
+      defaultMode: 420
+      sources:
+      - secret:
+          name: storage-configuration
+  - name: kube-api-access-lh48s
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-18T13:54:14Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-18T13:54:14Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-18T13:54:19Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-18T13:54:19Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-18T13:54:13Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://e3d2c3e33e06b3481e8b82762981e1b5e66b0cf8117daf50b58555e44892825a
+    image: quay.io/minio/minio:RELEASE.2025-04-08T15-41-24Z
+    imageID: quay.io/minio/minio@sha256:8834ae47a2de3509b83e0e70da9369c24bbbc22de42f2a2eddc530eee88acd1b
+    lastState: {}
+    name: minio
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-09-18T13:54:14Z"
+    user:
+      linux:
+        gid: 1000
+        supplementalGroups:
+        - 1000
+        uid: 1000
+    volumeMounts:
+    - mountPath: /tmp/minio/
+      name: cfg-vol
+    - mountPath: /export0
+      name: "0"
+    - mountPath: /export1
+      name: "1"
+    - mountPath: /export2
+      name: "2"
+    - mountPath: /export3
+      name: "3"
+    - mountPath: /tmp/certs
+      name: myminio-tls
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lh48s
+      readOnly: true
+      recursiveReadOnly: Disabled
+  - containerID: containerd://1267bda73b9415e24ef12d94058825f9ea995ecd3403500ccc8dffa4e84f1670
+    image: quay.io/minio/operator-sidecar:v7.0.1
+    imageID: quay.io/minio/operator-sidecar@sha256:ccc4fb79135aed8bf9c73d6f758d8e4f4ff24f51ca1bdd6f5b8ad9a9ad841a2f
+    lastState: {}
+    name: sidecar
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-09-18T13:54:14Z"
+    user:
+      linux:
+        gid: 1000
+        supplementalGroups:
+        - 1000
+        uid: 1000
+    volumeMounts:
+    - mountPath: /tmp/minio/
+      name: cfg-vol
+    - mountPath: /tmp/minio-config
+      name: configuration
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lh48s
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.18.0.5
+  hostIPs:
+  - ip: 172.18.0.5
+  initContainerStatuses:
+  - containerID: containerd://952b0d4af4d9a9f93f1745c0b35c27fbcf85e484b2b64035e7fba60b527af519
+    image: quay.io/minio/operator-sidecar:v7.0.1
+    imageID: quay.io/minio/operator-sidecar@sha256:ccc4fb79135aed8bf9c73d6f758d8e4f4ff24f51ca1bdd6f5b8ad9a9ad841a2f
+    lastState: {}
+    name: validate-arguments
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://952b0d4af4d9a9f93f1745c0b35c27fbcf85e484b2b64035e7fba60b527af519
+        exitCode: 0
+        finishedAt: "2025-09-18T13:54:13Z"
+        reason: Completed
+        startedAt: "2025-09-18T13:54:13Z"
+    user:
+      linux:
+        gid: 1000
+        supplementalGroups:
+        - 1000
+        uid: 1000
+    volumeMounts:
+    - mountPath: /tmp/minio/
+      name: cfg-vol
+    - mountPath: /tmp/minio-config
+      name: configuration
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lh48s
+      readOnly: true
+      recursiveReadOnly: Disabled
+  phase: Running
+  podIP: 10.1.1.96
+  podIPs:
+  - ip: 10.1.1.96
+  qosClass: BestEffort
+  startTime: "2025-09-18T13:54:13Z"

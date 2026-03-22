@@ -1,0 +1,14 @@
+# minio-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+  # Replace with your storage class name. For Minikube, you can use 'standard'.
+  storageClassName: standard 
+

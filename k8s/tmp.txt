@@ -1,0 +1,122 @@
+Name:         flink-config
+Namespace:    flink
+Labels:       app=flink
+Annotations:  <none>
+
+Data
+====
+flink-conf.yaml:
+----
+jobmanager.rpc.address: jobmanager
+sql-gateway.endpoint.rest.port: 8083-8090  
+taskmanager.numberOfTaskSlots: 2
+blob.server.port: 6124
+jobmanager.rpc.port: 6123
+taskmanager.rpc.port: 6122
+jobmanager.memory.process.size: 1600m
+taskmanager.memory.process.size: 1728m
+parallelism.default: 2
+rest.address: jobmanager
+flink.hadoop.fs.s3a.access.key: admin
+flink.hadoop.fs.s3a.secret.key: password
+flink.hadoop.fs.s3a.endpoint: http://minio:9000
+flink.hadoop.fs.s3a.path.style.access: true
+#Uncomment this when using hive meta store     
+fs.s3a.access.key: admin
+fs.s3a.secret.key: password
+fs.s3a.endpoint: http://minio:9000
+fs.s3a.path.style.access: true
+#s3.access.key: admin
+#s3.secret.key: password
+#s3.path.style.access: true
+#s3.endpoint: http://localhost:9000
+execution.checkpointing.interval: 60000
+env.java.opts: "-Dcom.esotericsoftware.kryo.unsafe=false"
+execution.checkpointing.mode: EXACTLY_ONCE  
+env.java.opts: --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens java.base/java.time=ALL-UNNAMED   
+
+
+hive-site.xml:
+----
+<configuration>
+   <property>
+     <name>hive.metastore.local</name>
+     <value>false</value>
+   </property>
+   <property>
+     <name>hive.metastore.uris</name>
+     <value>thrift://hms:9083</value>
+   </property>
+   <property>
+     <name>fs.s3a.access.key</name>
+     <value>admin</value>
+   </property>
+   <property>
+     <name>fs.s3a.secret.key</name>
+     <value>password</value>
+   </property>
+   <property>
+     <name>fs.s3a.endpoint</name>
+     <value>http://minio:9000</value>
+   </property>
+   <property>
+     <name>fs.s3a.path.style.access</name>
+     <value>true</value>
+   </property>
+</configuration> 
+
+
+
+log4j-console.properties:
+----
+# This affects logging for both user code and Flink
+rootLogger.level = INFO
+rootLogger.appenderRef.console.ref = ConsoleAppender
+rootLogger.appenderRef.rolling.ref = RollingFileAppender
+
+# Uncomment this if you want to _only_ change Flink's logging
+#logger.flink.name = org.apache.flink
+#logger.flink.level = INFO
+
+# The following lines keep the log level of common libraries/connectors on
+# log level INFO. The root logger does not override this. You have to manually
+# change the log levels here.
+logger.pekko.name = org.apache.pekko
+logger.pekko.level = INFO
+logger.kafka.name= org.apache.kafka
+logger.kafka.level = INFO
+logger.hadoop.name = org.apache.hadoop
+logger.hadoop.level = INFO
+logger.zookeeper.name = org.apache.zookeeper
+logger.zookeeper.level = INFO
+
+# Log all infos to the console
+appender.console.name = ConsoleAppender
+appender.console.type = CONSOLE
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c %x - %m%n
+
+# Log all infos in the given rolling file
+appender.rolling.name = RollingFileAppender
+appender.rolling.type = RollingFile
+appender.rolling.append = false
+appender.rolling.fileName = ${sys:log.file}
+appender.rolling.filePattern = ${sys:log.file}.%i
+appender.rolling.layout.type = PatternLayout
+appender.rolling.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %-60c %x - %m%n
+appender.rolling.policies.type = Policies
+appender.rolling.policies.size.type = SizeBasedTriggeringPolicy
+appender.rolling.policies.size.size=100MB
+appender.rolling.strategy.type = DefaultRolloverStrategy
+appender.rolling.strategy.max = 10
+
+# Suppress the irrelevant (wrong) warnings from the Netty channel handler
+logger.netty.name = org.jboss.netty.channel.DefaultChannelPipeline
+logger.netty.level = OFF   
+
+
+
+BinaryData
+====
+
+Events:  <none>

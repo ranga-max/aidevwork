@@ -1,0 +1,53 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: flink-sql-client
+spec:
+  template:
+    metadata:
+      labels:
+        app: flink
+        component: sql-client
+    spec:
+      containers:
+      - name: sql-client
+        image: rrchak/cpflinklocal
+        imagePullPolicy: IfNotPresent  
+        ports:
+         - containerPort: 8083
+           name: sqlgateway
+        #imagePullPolicy: Never
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "mkdir -p /mnt/tmp; while true; do sleep 30; done;" ]
+        securityContext:
+             runAsUser: 0 
+             privileged: true  
+        env:
+          - name: jobmanager.rpc.address
+            value: jobmanager
+          - name: rest.address
+            value: jobmanager
+        volumeMounts:
+        - name: flink-config-volume
+          mountPath: /opt/flink/conf/
+        - mountPath: "/tmp"
+          name: kafka-truststore    
+       #securityContext:
+       #   runAsUser: 9999  # refers to user _flink_ from official flink image, change if necessary
+      restartPolicy: Never
+      volumes:
+      - name: flink-config-volume
+        configMap:
+          name: flink-config
+          items:
+          - key: flink-conf.yaml
+            path: flink-conf.yaml
+          - key: log4j-console.properties
+            path: log4j-console.properties
+          - key: "hive-site.xml"
+            path: "hive-site.xml"     
+      - name: kafka-truststore
+        hostPath:
+             path: /mnt/ 
+        #secret:
+        #  secretName: truststore 

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hms
+spec:
+  selector:
+    matchLabels:
+      app: hms
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hms
+    spec:
+      volumes:
+      - name: metastore-cfg-vol
+        configMap:
+           name: hive-site-cm
+           items:
+            - key: "hive-site.xml"
+              path: "hive-site.xml"
+      containers:
+        - name: hms
+          image: rrchak/hms:latest 
+          ports:
+            - containerPort: 9083
+          volumeMounts:
+          #  - name: metastore-cfg-vol
+          #    mountPath: /opt/hive-metastore/conf/metastore-site.xml
+          #    subPath: metastore-site.xml
+             - name: metastore-cfg-vol
+               mountPath: /opt/hive-metastore/conf/
+          #   subPath: "core-site.xml"
+          #command: ["/opt/hive-metastore/bin/start-metastore"]
+          #args: ["-p", "9083"]
+          imagePullPolicy: Always
+      #volumes:
+      #  - name: metastore-cfg-vol
+      #    configMap:
+      #      name: metastore-cfg
